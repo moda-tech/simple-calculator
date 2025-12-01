@@ -4,11 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>タイトル</title>
+  <style>
+  #sum {
+    display: inline-block;
+    min-width: 80px;   /* 横幅キープ */
+    min-height: 30px;  /* 高さキープ */
+    border: 1px solid #ccc; /* なくてもOK、見やすさ用 */
+    font-size: 24px;
+    line-height: 30px;
+  }
+</style>
+
 </head>
 <body>
-    <p id="sum"></p>
+    <p id="sum">0</p><br>
     <button id="clear">C</button>
-    <button id="del">✖</button>
+    <button id="del">←</button>
     <button id="waru">÷</button><br>
     <button id="n7">7</button>
     <button id="n8">8</button>
