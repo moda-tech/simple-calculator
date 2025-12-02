@@ -13,30 +13,153 @@
     font-size: 24px;
     line-height: 30px;
   }
-</style>
 
+  /* C を横2マスにする */
+#clear {
+  grid-column: 1 / 3; /* 1列目から2列目まで使う */
+}
+
+/* 全体リセット（必要最低限） */
+* { box-sizing: border-box; }
+body {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  background: #f3f3f3; /* 薄いグレー背景 */
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px;
+}
+
+/* 電卓コンテナ */
+.calculator {
+  width: 320px;
+  background: #ffffff; /* 本体は白 */
+  border: 1px solid #dedede;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(16,16,16,0.06);
+  padding: 16px;
+}
+
+/* 表示部分 */
+.display {
+  background: #161616; /* 黒い表示パネル */
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* #sum は表示の中にある段落 */
+#sum {
+  font-size: 28px;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: 0.5px;
+  word-break: break-all;
+}
+
+/* ボタンパッドをグリッドで配置（4列） */
+.pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* ボタン共通スタイル */
+.pad button,
+.calculator > button {
+  appearance: none;
+  border: none;
+  background: #f7f7f7; /* 薄グレーのボタン */
+  color: #111;
+  padding: 14px 8px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.03);
+  transition: transform 0.06s ease, background 0.12s ease;
+}
+
+/* 演算子ボタンは濃いめに */
+#tasu, #hiku, #kakeru, #waru, #equal {
+  background: #2b2b2b; /* 濃グレー */
+  color: #fff;
+}
+
+/* イコールはアクセントに少し大きめに（右下にある想定） */
+#equal {
+  grid-column: 3 / 5; /* 最後の行で2列分確保 */
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 8px;
+}
+
+/* クリアと削除ボタンは薄めの赤寄りグレーで目立たせる */
+#clear, #del {
+  background: #efefef;
+  color: #111;
+}
+
+/* ホバー／アクティブ */
+.pad button:hover {
+  transform: translateY(-2px);
+}
+.pad button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* レスポンシブ（狭い画面用） */
+@media (max-width: 360px) {
+  .calculator { width: 100%; padding: 12px; }
+  #sum { font-size: 22px; }
+  .pad button { padding: 12px 6px; font-size: 16px; }
+}
+
+
+</style>
 </head>
 <body>
-    <p id="sum">0</p><br>
-    <button id="clear">C</button>
-    <button id="del">←</button>
-    <button id="waru">÷</button><br>
-    <button id="n7">7</button>
-    <button id="n8">8</button>
-    <button id="n9">9</button>
-    <button id="kakeru">x</button><br>
-    <button id="n4">4</button>
-    <button id="n5">5</button>
-    <button id="n6">6</button>
-    <button id="hiku">-</button><br>
-    <button id="n1">1</button>
-    <button id="n2">2</button>
-    <button id="n3">3</button>
-    <button id="tasu">+</button><br>
-    <button id="n00">00</button>
-    <button id="n0">0</button>
-    <button id="equal">=</button>
+  <div class="calculator">
+    <div class="display">
+      <p id="sum">0</p>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="pad">
+      <button id="clear">C</button>
+      <button id="del">←</button>
+      <button id="waru">÷</button>
+
+      <button id="n7">7</button>
+      <button id="n8">8</button>
+      <button id="n9">9</button>
+      <button id="kakeru">x</button>
+
+      <button id="n4">4</button>
+      <button id="n5">5</button>
+      <button id="n6">6</button>
+      <button id="hiku">-</button>
+
+      <button id="n1">1</button>
+      <button id="n2">2</button>
+      <button id="n3">3</button>
+      <button id="tasu">+</button>
+
+      <button id="n00">00</button>
+      <button id="n0">0</button>
+      <button id="equal">=</button>
+    </div>
+  </div>
+
+  <script src="script_re.js"></script>
 </body>
+
 </html>
